@@ -83,9 +83,25 @@ Employee 클래스는 세가지 메서드 calculatePay(), reportHours(), save()�
 
 ### 사고 실험
 
+재무제표를 웹 페이지로 보여주는 시스템이 있다고 가정해보자
 
+![https://velog.velcdn.com/images/rudaks94/post/5541fa73-43bb-4884-ab72-158ca7e243cb/image.png](https://velog.velcdn.com/images/rudaks94/post/5541fa73-43bb-4884-ab72-158ca7e243cb/image.png)
+
+- 다만, 흑백 프린터로 출력하게끔 만드는 기능도 추가된다고 가정해보자
+- 새로운 코드를 작성하는데 있어, 기존 코드를 수정하지 않으려면?
+- SRP(단일 책임 원칙)을 이용해 분리한다.
+
+여기서 보고서 생성은 두 개의 책임으로 분리가 된다. 
+
+이 처럼 책임을 분리하였다면, 둘 중 하나가 변경하더라도 다른 하나는 변경이 되지 않도록 조직해야한다.
+
+이러한 처리 과정을 더 확장시켜 클래스 단위와 컴포넌트 단위로 생각해본다.
+
+![https://t1.daumcdn.net/cfile/tistory/9935373A5E43875A02](https://t1.daumcdn.net/cfile/tistory/9935373A5E43875A02)
 
 ### 방향성 제어
+
+![https://velog.velcdn.com/images/rudaks94/post/01934358-8ed7-4c71-9066-f0910d45f9cb/image.png](https://velog.velcdn.com/images/rudaks94/post/01934358-8ed7-4c71-9066-f0910d45f9cb/image.png)
 
 - 컴포넌트 간의 관계를 명확히 하는 것도 중요하다. 일반적으로 컴포넌트간의 의존성은 단방향으로만 관계를 가지는 것이 가장 이상적이다.
 - 가장 대표적인 MVC 패턴을 생각해보자
@@ -102,14 +118,17 @@ Employee 클래스는 세가지 메서드 calculatePay(), reportHours(), save()�
 
 *프로그램의 객체는 프로그램의 정확성을 깨뜨리지 않으면서 하위 타입의 인스턴스로 바꿀 수 있어야 한다.*
 
+들어가기 앞서 하위타입의 정의를 먼저 살펴보자
+
 ```
+여기에서 필요한 것은 다음과 같은 치환 원칙이다. S타입의 객체 o1 각각에 대응하는 T타입 객체 o2가 있고, T타입을 이용해서 정의한 모든 프로그램 P에서 o2의 자리에 o1을 치환하더라도 P의 행위가 변하지 않는다면, S는 T의 하위 타입이다.
 ```
 
 ### 상속을 사용하도록 가이드하기
 
 License 클래스가 다음과 같이 존재한다. 이 클래스는 calcFee()라는 메서드를 가지며, 두가지 하위 타입을 가지고 있다.
 
-!(https://niqrid2020.pe.kr/wp-content/uploads/2021/02/%EC%BA%A1%EC%B2%981-1024x576.png)[https://niqrid2020.pe.kr/wp-content/uploads/2021/02/%EC%BA%A1%EC%B2%981-1024x576.png]
+![https://niqrid2020.pe.kr/wp-content/uploads/2021/02/%EC%BA%A1%EC%B2%981-1024x576.png](https://niqrid2020.pe.kr/wp-content/uploads/2021/02/%EC%BA%A1%EC%B2%981-1024x576.png)
 
 위 구현은 LSP를 잘 준수하고 있다. Billing 어플리케이션은 License가 어떤 하위타입을 사용하는지 알 필요가 없다.
 
@@ -117,7 +136,42 @@ License 클래스가 다음과 같이 존재한다. 이 클래스는 calcFee()�
 
 반대로 다음 정사각형/직사각형 클래스는 LSP를 위반한다.
 
+이 예제에서 Square는 Rectangle의 하위 타입으로는 적합하지 않다. 그러나 Square의 높이와 너비는 반드시 함께 변경된다. User는 Rectangle을 보고 있으므로 혼동이 생길 수 있다.
+
+```java
+Rectangle r = new Rectangle();
+r.setW(5);
+r.setH(2);
+assert(r.area() == 10);
+```
+
+만약 위의 코드를 실행하면 실패하게 된다.
+
+여기서 LSP 위반을 막으려면 if 문을 추가하는 방식 따위로 Square인지 검사하는 매커니즘이 들어가야만 한다.
+
+**그러나 이렇게 하면 타입치환이 불가능해진다.**
+
 ### LSP 위배 사례
+
+구체적인 클래스 수준이 아닌 조금더 개략적인 수준인 REST API의 URI 설계로 가정해보자
+
+택시 파견 서비스를 통합하는 어플리케이션을 만들고 있다.
+
+이 때, 택시기사 밥의 택시 파견 URI는 다음과 같다.
+
+```
+purplecab.com/driver/Bob
+```
+
+그리고 PUT 방식으로 다음과 같이 호출한다.
+
+```
+PUT
+purplecab.com/driver/Bob
+            /pickupAddress/24 Maple ST.
+            /pickUpTime/153
+            /destination/ORD
+```
 
 ### 결론
 
@@ -125,7 +179,7 @@ License 클래스가 다음과 같이 존재한다. 이 클래스는 calcFee()�
 
 **상위 클래스에서는 참조하는 클래스의 세부적인 구현 내용에 관심이 없다. **
 
-**LSP는 메서드 클래스 수준의 설계원칙이다.**
+**LSP는 메서드와 클래스 그리고 아키텍처 수준의 설계원칙이다.**
 
 # 질의응답
 
