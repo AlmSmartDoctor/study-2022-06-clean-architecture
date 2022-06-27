@@ -43,9 +43,13 @@
 ```
 
 ```text
-천규:
+천규: 
+Q1) 94p에 있는 그림 11.1에서 ConcreteImpl의 인스턴스를 의존성 없이 생성하기 위해 ServiceFactoryImpl을
+    사용한다고 하는데, 그렇다면 ServiceFactoryImpl의 인스턴스는 구체적으로 어떻게 생성되는 것인지 잘 모르겠습니다.
+Q2) Application이 결국 ServiceFactoryImpl에 의존하게 되는 것이 아닌가 하는 의문이 드는데,
+    Factory 패턴 자체가 Application의 객체 의존성을 '완전히 제거'하는 것이 아니라 '최소화'하기 위한 것이기 때문인가요?
 
-대답: (PR에서 suggest로 커밋하기 편하게 질문 작성 후 이 구문은 지워주세요 ㅎㅎ)
+대답: 
 ```
 
 ```text
