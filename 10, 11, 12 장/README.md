@@ -164,12 +164,6 @@ Framework가 Database에 의존하고 있으니 ISP 위배가 된다는것 까�
 ```
 
 ```text
-승직:
-
-대답: (PR에서 suggest로 커밋하기 편하게 질문 작성 후 이 구문은 지워주세요 ㅎㅎ)
-```
-
-```text
 천규: 
 Q1) 94p에 있는 그림 11.1에서 ConcreteImpl의 인스턴스를 의존성 없이 생성하기 위해 ServiceFactoryImpl을
     사용한다고 하는데, 그렇다면 ServiceFactoryImpl의 인스턴스는 구체적으로 어떻게 생성되는 것인지 잘 모르겠습니다.
