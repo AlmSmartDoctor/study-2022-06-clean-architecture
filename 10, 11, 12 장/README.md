@@ -178,7 +178,8 @@ Q2) 인스턴스 생성 추상화
 ```
 
 ```text
-성준:
+성준: 어셈블리에서 심볼 테이블 가지고 라이브러리 사용하는 코드 보고 싶어요
 
-대답: (PR에서 suggest로 커밋하기 편하게 질문 작성 후 이 구문은 지워주세요 ㅎㅎ)
+대답:  제가 어셈블리 알못이라 그런데 이게 맞는 예시인지 모르겠네요. 
+https://github.com/mrfearless/libraries/tree/master/cJSON/cjson%20x86
 ```
