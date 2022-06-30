@@ -49,7 +49,9 @@ Q1) 94p에 있는 그림 11.1에서 ConcreteImpl의 인스턴스를 의존성 �
 Q2) Application이 결국 ServiceFactoryImpl에 의존하게 되는 것이 아닌가 하는 의문이 드는데,
     Factory 패턴 자체가 Application의 객체 의존성을 '완전히 제거'하는 것이 아니라 '최소화'하기 위한 것이기 때문인가요?
 
-대답: 
+토론결과: 
+Q1) main에서 생성합니다
+Q2) 인스턴스 생성 추상화
 ```
 
 ```text
