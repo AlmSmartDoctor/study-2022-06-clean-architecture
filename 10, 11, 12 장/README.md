@@ -57,5 +57,6 @@
 ```text
 성준: 어셈블리에서 심볼 테이블 가지고 라이브러리 사용하는 코드 보고 싶어요
 
-대답: 
+대답:  제가 어셈블리 알못이라 그런데 이게 맞는 예시인지 모르겠네요. 
+https://github.com/mrfearless/libraries/tree/master/cJSON/cjson%20x86
 ```
