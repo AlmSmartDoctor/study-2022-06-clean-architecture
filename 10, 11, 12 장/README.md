@@ -136,9 +136,11 @@ import com.example.AbstractClass1
 ```
 
 ```text
-진영:
+진영: ISP 마지막쪽 보면 ISP와 아키텍쳐에 대한 예시로 System -> Framework -> Database 의존성이 나오는데 
+Framework가 Database에 의존하고 있으니 ISP 위배가 된다는것 까지는 알겠는데 실제로 더 괜찮은 아키텍쳐를
+구성하려면 어떤 방식으로 아키텍쳐를 수정해야할까요?
 
-대답: (PR에서 suggest로 커밋하기 편하게 질문 작성 후 이 구문은 지워주세요 ㅎㅎ)
+토론 결과: Framework가 잘못함
 ```
 
 ```text
