@@ -76,7 +76,7 @@ import com.example.AbstractClass1
 - 곡선은 시스템을 추상적인 컴포넌트와 구체적인 컴포넌트로 분리한다. 
 
 **소스코드의 의존성은 제어흐름과는 반대로 역전이 된다.**
-**그래서 이 원칙을 의존성 역전(Dependency Injection)이라고도 부른다.**
+**그래서 이 원칙을 의존성 역전(Dependency Inversion)이라고도 부른다.**
 
 ### 구체 컴포넌트
 
