@@ -226,7 +226,7 @@ class ServiceImpl: Service {
 
 ```text
 하진:
-![](17_5.png)
+
 대답: (PR에서 suggest로 커밋하기 편하게 질문 작성 후 이 구문은 지워주세요 ㅎㅎ)
 ```
 
