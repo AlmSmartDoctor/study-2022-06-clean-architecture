@@ -47,8 +47,36 @@
 
 ```text
 규훤:
+실제 작업에서 엔티티의 핵심 업무 규칙과 유스케이스의 차이를 잘 모르겠습니다.
 
-대답: (PR에서 suggest로 커밋하기 편하게 질문 작성 후 이 구문은 지워주세요 ㅎㅎ)
+저는 보통 클아를 적용할 때, 퓨어한 Model과 Model을 다루는 UseCase를 같은 모듈(컴포넌트)에 두는데,
+책에서 말하는 Model은 퓨어하지 않고 함수(핵심 업무 규칙)를 가지고 있더라구요.
+
+혹시 가능하다면 예시 코드도 보고 싶습니다ㅎㅎ
+
+대답: 저자 블로그의 글에서는 포인트를 enterprise-wise냐, application-specific냐를 강조하고 구분하더군요.
+http://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html
+
+![](http://blog.cleancoder.com/uncle-bob/images/2012-08-13-the-clean-architecture/CleanArchitecture.jpg)
+
+전제
+- Enterprise(뜻: 사업, 기업, 그것들의 경영 방법)은 여러 application으로 구성될 수 있습니다.
+
+Entities
+- Enterprise-wise business rules를 캡슐화하는 단위입니다.
+- 메소드를 갖는 객체의 집합일 수도 있고, 또는 자료구조(DB 스키마라고 보시면 되겠습니다)와 함수의 집합일 수도 있습니다.
+- 가장 일반적이고, 고수준입니다.
+- 외부에 변화에 가장 둔감합니다.
+- Enterprise가 딱히 없고 single application을 작성하는 경우, entites가 application의 business objects가 됩니다.
+
+Use cases
+- Application-specific business rules를 캡슐화하는 단위입니다.
+- Entities로의/부터의 데이터 흐름을 조작해서, 또한 entities에 명령을 내려서, enterprise-wide business rules를 use case의 목적을 성취하는 데 사용합니다.
+- 이 계층이 변화하더라도 Entities에 영향을 주지 않을 것이라 기대할 수 있습니다. 또한 DB/UI/framework와 같은 외부의 것들이 변화해도 이 계층은 영향을 받지 않을 것이라 기대할 수 있습니다. (관심사 분리)
+- Application의 operation(운영 또는 동작?)에 변화가 발생할 경우 이 계층은 영향을 받을 수 있습니다. 즉슨, use cases의 details가 변화할 경우 이 계층의 일부 코드는 영향을 받을 수 있습니다.
+
+그래서 entity와 use case가 둘다 business rules의 추상화 단위이지만, 이러한 차이를 두고 구분되며,
+이에 관련해 Model class가 메소드를 갖거나, 혹은 로직이 함수 형태로 존재하느냐는 별로 상관하지 않는 것 같더군요.
 ```
 
 ```text
