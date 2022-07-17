@@ -38,7 +38,13 @@ UI의 변경은 업무 규칙에 영향을 주지 않는다.
 
 - **엔티티**
 
-핵심 업무 규칙
+다양한 애플리케이션에서 재사용할 수 있는 핵심 업무 규칙
+
+> *[이 어플리케이션들의 언어가 제각각 다르다면?](https://github.com/AlmSmartDoctor/clean-architecture-study/pull/50)*
+
+[RPC<sub>Remote Procedure Call</sub>](https://medium.com/naver-cloud-platform/nbp-%EA%B8%B0%EC%88%A0-%EA%B2%BD%ED%97%98-%EC%8B%9C%EB%8C%80%EC%9D%98-%ED%9D%90%EB%A6%84-grpc-%EA%B9%8A%EA%B2%8C-%ED%8C%8C%EA%B3%A0%EB%93%A4%EA%B8%B0-1-39e97cb3460)가 하나의 해답이 될 수 있다.
+
+RPC는 네트워크로 연결된 서버 상의 프로시저(함수, 메서드 등)를 원격으로 호출할 수 있는 기능이다. IDL<sub>Interface Definication Language</sub> 기반으로 다양한 언어를 가진 환경에서도 쉽게 확장이 가능하며, 인터페이스 협업에도 용이하다.
 
 - **유스케이스**
 
@@ -49,6 +55,12 @@ UI의 변경은 업무 규칙에 영향을 주지 않는다.
 데이터를 유스케이스가 사용하는 형식에서 외부 에이전시가 사용하는 형식으로, 또는 그 반대로 변환한다.
 
 MVC, MVVM 등의 디자인 패턴에서 Presenter, View Model, Controller 등을 포함한다.
+
+[**리액트에서의 인터페이스 어댑터**](https://github.com/AlmSmartDoctor/clean-architecture-study/pull/48)
+
+리액트의 경우, 많은 상태관리 라이브러리가 [Flux](https://facebook.github.io/flux/docs/in-depth-overview) 패턴을 사용한다. View에서 Model로의 직접적인 접근을 막는 MVP 패턴에, 사용가능한 로직을 미리 정해놓은 Facade 패턴을 섞은 패턴이다.
+
+Flux 패턴의 특징은 단방향 데이터 흐름이다. 데이터 조작 로직 호출은 View에서 Dispatcher로 흐르고, Dispatcher는Store(Model)에 접근하여 실제 데이터 조작을, Store은 변경된 데이터를 View로 보낸다.
 
 - **프레임워크와 드라이버**
 
@@ -80,6 +92,13 @@ MVC, MVVM 등의 디자인 패턴에서 Presenter, View Model, Controller 등을
 
 ECB에서 Boundary는 외부와의 상호작용을 캡슐화한다. ECB에서 Controller은 원래 유스케이스 계층에 속해 Boundary와 Entity를 중재하는 역할을 하지만, 여기에서는 Use Case Interactor가 이 Controller의 역할을 한다.
 
+그림에서 [Boundary의 역할은 유스케이스 인터렉터와 컨트롤러를 양방향으로 분리하기 위한 인터페이스](https://github.com/AlmSmartDoctor/clean-architecture-study/pull/53/files)다. 후술할 **분리된 경계** 항목에서 에서 이렇게 분리하는 의도를 설명한다.
+
+> *[그런데 Data Access Interface의 위치가 이상하다?](https://github.com/AlmSmartDoctor/clean-architecture-study/pull/49)*
+
+이 인터페이스는 후술할 데이터베이스 Gateway에 해당한다. 그리고 이 Gateway는 유스케이스 계층과 데이터베이스 계층 사이, 즉 Presenter가 있는 인터페이스 어댑터 계층에 위치하는 것이 맞지 않을까.
+
+
 # 프레젠터와 험블 객체
 
 ## 험블 객체 패턴
@@ -99,9 +118,29 @@ ECB에서 Boundary는 외부와의 상호작용을 캡슐화한다. ECB에서 Co
 
 테스트하기 어려운 행위와 쉬운 행위를 두 개의 모듈, 또는 클래스로 나눈다. 이 중 **테스트하기 어려운 것**이 **험블 객체**이다.
 
-GUI에서 화면의 요소를 적절하게 표시하는 행위는 View가, GUI에서 수행하는 행위의 대다수는 Presenter가 맡는다. 따라서 View는 험블 객체이다.
+[GUI에서 화면의 요소를 적절하게 표시하는 행위는 View가, GUI에서 수행하는 행위의 대다수는 Presenter가 맡는다. 따라서 View는 험블 객체이다.](https://github.com/AlmSmartDoctor/clean-architecture-study/pull/51)
 
 Presenter는 유스케이스로부터 받은 데이터를 View Model이라는 데이터 구조에 담는다. View는 View Model에서 이 데이터를 찾아 화면에 로드할 뿐이다.
+
+[**리액트에서의 험블 객체 패턴**](https://github.com/AlmSmartDoctor/clean-architecture-study/pull/52)
+
+리액트에선 UI를 "컴포넌트(책의 앞장에서 언급됐던 컴포넌트보단 더 작은 단위)"로 구성한다.
+함수형 컴포넌트에선 return 값이 실제로 렌더링되는 View이고, 데이터와 비즈니스 로직은 hook이라는 또다른 함수를 컴포넌트 안에서 호출해 사용할 수 있다.
+
+```typescript
+export function MyBox() {
+  const { data, deleteData, insertData } = useData(); // hook
+
+  return (
+  <div>
+    <input value={data} onChange={(e) => insertData(e.target.value)} />
+    <button onClick={deleteData} />
+  </div>
+  )
+}
+```
+
+로직들이 들어있어 테스트가 용이한 hook과, 테스트가 어려운 험블 객체인 View를 분리한 사례이다.
 
 **험블 객체 패턴을 통해 테스트 용이성을 기준으로 모듈을 분리하면 저절로 아키텍처 경계가 정의된다.**
 
