@@ -171,7 +171,7 @@ YAGNI<sub>You Aren't Goindg to Need it</sub> 원칙과 경계 모두를 지키�
   <br/>
 </div>
 
-**퍼사드<sub>Facade: 정면, 앞면</sub>**는 Client가 호출할 수 있는 모든 Service들을 메서드 형태로 제공한다.
+<b>퍼사드<sub>Facade: 정면, 앞면</sub></b>는 Client가 호출할 수 있는 모든 Service들을 메서드 형태로 제공한다.
 
 Service 호출이 발생하면 해당 Service 클래스로 호출을 전달하므로, Client는 Service 클래스에 직접 접근할 수 없다.
 
