@@ -58,7 +58,7 @@ MVC, MVVM 등의 디자인 패턴에서 Presenter, View Model, Controller 등을
 
 [**리액트에서의 인터페이스 어댑터**](https://github.com/AlmSmartDoctor/clean-architecture-study/pull/48)
 
-리액트의 경우, 많은 상태관리 라이브러리가 [Flux](https://facebook.github.io/flux/docs/in-depth-overview) 패턴을 사용한다. View에서 Model로의 직접적인 접근을 막는 MVP 패턴에, 사용가능한 로직을 미리 정해놓은 Facade 패턴을 섞은 패턴이다.
+리액트의 경우, 많은 상태관리 라이브러리가 [Flux](https://facebook.github.io/flux/docs/in-depth-overview) 패턴을 사용한다. View에서 Model로의 직접적인 접근을 막는 ~~MVP~~MVVM 패턴에, 사용가능한 로직을 미리 정해놓은 Facade 패턴을 섞은 패턴이다.
 
 Flux 패턴의 특징은 단방향 데이터 흐름이다. 데이터 조작 로직 호출은 View에서 Dispatcher로 흐르고, Dispatcher는Store(Model)에 접근하여 실제 데이터 조작을, Store은 변경된 데이터를 View로 보낸다.
 
@@ -94,9 +94,9 @@ ECB에서 Boundary는 외부와의 상호작용을 캡슐화한다. ECB에서 Co
 
 그림에서 [Boundary의 역할은 유스케이스 인터렉터와 컨트롤러를 양방향으로 분리하기 위한 인터페이스](https://github.com/AlmSmartDoctor/clean-architecture-study/pull/53/files)다. 후술할 **분리된 경계** 항목에서 에서 이렇게 분리하는 의도를 설명한다.
 
-> *[그런데 Data Access Interface의 위치가 이상하다?](https://github.com/AlmSmartDoctor/clean-architecture-study/pull/49)*
+> *[Data Access Interface가 Entity에 직접 접근하는게 맞을까?](https://github.com/AlmSmartDoctor/clean-architecture-study/pull/49)*
 
-이 인터페이스는 후술할 데이터베이스 Gateway에 해당한다. 그리고 이 Gateway는 유스케이스 계층과 데이터베이스 계층 사이, 즉 Presenter가 있는 인터페이스 어댑터 계층에 위치하는 것이 맞지 않을까.
+~~이 인터페이스는 후술할 데이터베이스 Gateway에 해당한다. 그리고 이 Gateway는 유스케이스 계층과 데이터베이스 계층 사이, 즉 Presenter가 있는 인터페이스 어댑터 계층에 위치하는 것이 맞지 않을까.~~ 몰?루
 
 
 # 프레젠터와 험블 객체
