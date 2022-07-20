@@ -184,7 +184,7 @@
 ```
 
 ```text
-준우:
+준우: 248p의 main 함수에서 makeGame 호출시 ```HuntTheWumpusFacade```와 ```new Main()``` 을 넘겨주는데 여기서 new Main으로 새로 생성된 인스턴스를 전달하는 이유가 무엇인지 궁금하네요.
 
 대답: (PR에서 suggest로 커밋하기 편하게 질문 작성 후 이 구문은 지워주세요 ㅎㅎ)
 ```
