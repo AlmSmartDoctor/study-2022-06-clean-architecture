@@ -159,10 +159,28 @@
 대답: (PR에서 suggest로 커밋하기 편하게 질문 작성 후 이 구문은 지워주세요 ㅎㅎ)
 ```
 
-```text
-하진:
+```kotlin
+@SpringBootApplication
+@EnableTransactionManagement
+@EnableAsync
+@EnableCaching
+class AutoReceiptApplication
 
-대답: (PR에서 suggest로 커밋하기 편하게 질문 작성 후 이 구문은 지워주세요 ㅎㅎ)
+fun main(args: Array<String>) {
+    runApplication<AutoReceiptApplication>(*args)
+}
+```
+```text
+하진: (26장) 스프링 부트의 main에는 아무것도 없습니다.
+위의 코드는 자동접수의 예시입니다.
+메인 class에 설정 어노테이션이 3개 정도 붙어있기는 하지만, 그것들도 귀찮아서 메인에 달아둔 것이지 다른 Configuration 클래스로 완전히 분리시킬 수 있으므로, 사실상 아무 것도 없습니다.
+사용자와의 상호작용은 스프링 부트가 컨트롤러의 메소드와 상호작용하는 것으로 처리되구요.
+그래서 안드로이드, 웹 프론트, C# 등 여러 환경(내지는 프레임워크)마다 entry driver(entry point)를 관리하는 방법이 궁금합니다.
+
+발표자분께서 해당하는, 혹은 겪어보신 환경의 사례를 공유해주실 수 있으신가요?
+그리고 스터디할 때 각 팀/파트별로 사례를 공유하는 시간을 가졌으면 좋겠습니다 :)
+
+대답: 
 ```
 
 ```text
