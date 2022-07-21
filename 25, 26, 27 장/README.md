@@ -154,9 +154,17 @@
 # 질의응답
 
 ```text
-지인:
+지인: 26장에서 예시로 주어지는 코드가 너무 길어서 이해하기가 조금 귀찮네요...ㅎㅎ
+조금 간략하게 정리해서 한 번 설명해주실 수 있나요?
 
-대답: (PR에서 suggest로 커밋하기 편하게 질문 작성 후 이 구문은 지워주세요 ㅎㅎ)
+대답: 
+StreamInput, println -> 메인컴포넌트상의 presentation처리부분
+System.in, System.out -> 플러그인 컴포넌트 presentationlayer
+HuntTheWumpusFacade -> Main 컴포넌트중에서도 가장 더러운 부분
+game.make(Move/shoot)Command -> 실제 로직이 실행되는 부분
+루프 -> 실행 환경
+string, map -> 리소스 생성 및 구체적인 리소스는 다른 컴포넌트에서 알지 않도록 하는것
+같습니다.
 ```
 
 ```text
