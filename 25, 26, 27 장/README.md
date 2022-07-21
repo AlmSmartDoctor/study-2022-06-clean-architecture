@@ -181,6 +181,10 @@ fun main(args: Array<String>) {
 그리고 스터디할 때 각 팀/파트별로 사례를 공유하는 시간을 가졌으면 좋겠습니다 :)
 
 대답: 
+Android > Dagger Hilt(https://dagger.dev/hilt/entry-points.html)를 사용, entrypoint 더 정확히는 AndroidEntry가 진입점이 되고, 여러 Hilt Component별로(모바일은 Singleton 사용) 정의된 의존성 주입을 해줍니다.
+C# > ioc 클래스를 만들어서 여기서 주입
+React > index.tsx
+ios > 명시적으론 없음
 ```
 
 ```text
