@@ -158,6 +158,13 @@
 조금 간략하게 정리해서 한 번 설명해주실 수 있나요?
 
 대답: 
+StreamInput, println -> 메인컴포넌트상의 presentation처리부분
+System.in, System.out -> 플러그인 컴포넌트 presentationlayer
+HuntTheWumpusFacade -> Main 컴포넌트중에서도 가장 더러운 부분
+game.make(Move/shoot)Command -> 실제 로직이 실행되는 부분
+루프 -> 실행 환경
+string, map -> 리소스 생성 및 구체적인 리소스는 다른 컴포넌트에서 알지 않도록 하는것
+같습니다.
 ```
 
 ```text
